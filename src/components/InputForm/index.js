@@ -1,8 +1,13 @@
 import React, {useRef} from "react";
+import PropTypes from 'prop-types';
 import {TextField, Fab, Grid} from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
 export const InputForm = ({updateData}) => {
+
+    InputForm.propTypes = {
+        updateData: PropTypes.string
+    };
 
     let message = useRef();
 
