@@ -1,5 +1,4 @@
 import React, {useRef} from "react";
-import * as styles from './index.module.css';
 import {TextField, Fab, Grid} from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 
@@ -9,8 +8,7 @@ export const InputForm = ({updateData}) => {
 
     let handleMessage = (event) => {
         event.preventDefault();
-        let newMessage = message.current.value;
-        updateData(newMessage);
+        updateData(message.current.value);
         message.current.value = '';
     }
 

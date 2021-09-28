@@ -2,8 +2,9 @@ import React, {useEffect} from "react";
 import * as styles from './index.module.css';
 import {InputForm} from "../InputForm";
 import {ListItemText,Grid, ListItem, List} from "@material-ui/core";
+import faker from "faker";
 
-export const CurrentChat = ({}) => {
+export const CurrentChat = () => {
 
     const [messageList, setMessageList] = React.useState([]);
 
@@ -12,16 +13,12 @@ export const CurrentChat = ({}) => {
     }
 
     useEffect(() => {
-        if(messageList.length > 0) {
-            let lastMessageAuthor = messageList[messageList.length - 1].name;
-            if(lastMessageAuthor === 'me') {
-                let botMessage = {name: "bot", message: "i am bot"};
-                let delay = Math.random() * 2000;
+            if(messageList.length > 0 &&
+                messageList[messageList.length - 1].name === 'me') {
                 setTimeout(() => {
-                    setMessageList([...messageList, botMessage]);
-                }, delay);
+                    setMessageList([...messageList, {name: "bot", message: faker.lorem.sentence()}]);
+                }, 1500);
             };
-        }
     }, [messageList]);
 
     return (
@@ -46,5 +43,4 @@ export const CurrentChat = ({}) => {
             <InputForm updateData={updateData}/>
     </div>
     )
-
 }
