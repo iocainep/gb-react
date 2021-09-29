@@ -1,0 +1,19 @@
+.menuList {
+    display: flex;
+}
+
+li {
+    list-style-type: none;
+}
+
+.flex {
+    display: flex;
+}
+
+a:visited {
+    color: white;
+}
+
+.MuiSvgIcon {
+    font-size: 2rem !important;
+}

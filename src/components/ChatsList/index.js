@@ -1,32 +1,37 @@
 import React from "react";
-import faker from "faker";
 import {Avatar, List, ListItem, ListItemAvatar, ListItemText, Paper} from '@material-ui/core';
+import {Link} from 'react-router-dom';
+import {CONTACTS} from '../mock';
 
 export const ChatsList = () => {
-
-    const contacts = Array.from({length: 10}).map((_, index) => ({
-        id: index + 1,
-        name: faker.name.firstName(),
-        avatar: faker.image.avatar()
-    }));
 
     return (
         <Paper>
             <List>
                 {
-                    contacts.map((item, i) => (
-                        <ListItem
+                    CONTACTS.map((item, i) => (
+                        <Link
                             key={i}
-                            id={item.id}
+                            to={`/chats/${item.id}`}
+                            style={{
+                                textDecoration: 'none',
+                                color: 'black',
+                                display: 'flex'
+                            }}
                         >
-                            <ListItemAvatar>
-                                <Avatar
-                                    alt={item.name}
-                                    src={item.avatar}/>
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary={item.name}/>
-                        </ListItem>
+                            <ListItem
+                                key={i}
+                                id={item.id}
+                            >
+                                <ListItemAvatar>
+                                    <Avatar
+                                        alt={item.name}
+                                        src={item.avatar}/>
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary={item.name}/>
+                            </ListItem>
+                        </Link>
                     ))
                 }
             </List>

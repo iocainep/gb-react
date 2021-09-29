@@ -3,8 +3,11 @@ import {ChatsList} from '../../components/ChatsList';
 import {CurrentChat} from '../../components/CurrentChat';
 import {Grid} from '@material-ui/core';
 import {MenuBar} from "../../components/MenuBar";
+import {useParams} from "react-router";
 
 export const ChatOpened = () => {
+
+    const {chatId} = useParams();
 
     return (
         <Grid container spacing={3}>
@@ -15,9 +18,12 @@ export const ChatOpened = () => {
                 <ChatsList/>
             </Grid>
             <Grid item xs={9}>
-                <CurrentChat/>
+                {
+                    (chatId > 0)
+                    ? <CurrentChat/>
+                    : <div>Please choose one of chats</div>
+                }
             </Grid>
         </Grid>
-
     )
 }
