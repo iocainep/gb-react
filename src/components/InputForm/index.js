@@ -5,10 +5,6 @@ import SendIcon from '@material-ui/icons/Send';
 
 export const InputForm = ({updateData}) => {
 
-    InputForm.propTypes = {
-        updateData: PropTypes.string
-    };
-
     // let message = useRef();
     //
     // let handleMessage = (event) => {
@@ -41,4 +37,8 @@ export const InputForm = ({updateData}) => {
             </Grid>
         </Grid>
     );
+};
+
+InputForm.propTypes = {
+    updateData: PropTypes.string
 };
