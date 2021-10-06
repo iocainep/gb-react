@@ -1,49 +1,40 @@
-import React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import {toggleActivity} from "../../store/profile";
-import {store} from '../../store'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Checkbox from '@material-ui/core/Checkbox'
+import { changeIsOnlineWithThunk } from '../../store/profile';
 
-export const ProfileStatus = () => {
+export const ProfileStatus = (props) => {
+    const dispatch = useDispatch()
+    const { age, name, isOnline } = useSelector((state) => state.profile)
 
-    const profileStatus = useSelector((state) => {
-        if (state.isActive === true) {
-            return "active"
-        } else {
-            return "inactive"
-        }
-    })
-
-    const dispatch = useDispatch();
+    const handleIsOnlineChange = (event) => {
+        dispatch(changeIsOnlineWithThunk(event.target.checked))
+    }
 
     return (
         <div>
-            <h3>
-                Currently your status is {profileStatus}
-            </h3>
-            {
-                (store.getState().isActive)
-                    ? <FormControlLabel
-                        control={
-                            <Checkbox
-                                onChange={() => {
-                                    dispatch(toggleActivity)
-                                }}
-                            />
-                        }
+            <p>Profile page</p>
+            <p>
+                <b>Name: </b>
+                {name}
+            </p>
+            <p>
+                <b>Age: </b>
+                {age}
+            </p>
+
+            <FormControlLabel
+                control={
+                    <Checkbox
+                        checked={isOnline}
+                        onChange={handleIsOnlineChange}
+                        name="checkedB"
                         color="primary"
-                        label="Deactivate profile"/>
-                    : <FormControlLabel
-                        control={
-                            <Checkbox onChange={() => {
-                                dispatch(toggleActivity)
-                            }}
-                            />
-                        }
-                        color="primary"
-                        label="Activate profile"/>
-            }
+                    />
+                }
+                label={<p>Is user online</p>}
+            />
         </div>
-    );
-};
+    )
+}
