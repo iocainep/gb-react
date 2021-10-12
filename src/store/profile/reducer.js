@@ -1,16 +1,19 @@
-import {TOGGLE_USER} from "./actions";
+import { CHANGE_IS_ONLINE } from '../profile/actions'
 
-export const initialState = {
-    isActive: false
+const initialState = {
+    name: 'John',
+    age: 27,
+    isOnline: true,
 }
 
-export const userReducer = (state = initialState, action) => {
+export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case TOGGLE_USER:
+        case CHANGE_IS_ONLINE: {
             return {
                 ...state,
-                isActive: !state.isActive
+                isOnline: action.payload.isOnline,
             }
+        }
         default:
             return state
     }

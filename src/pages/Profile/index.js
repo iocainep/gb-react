@@ -9,7 +9,7 @@ export const Profile = () => {
         <Grid container spacing={3}>
             <MenuBar/>
             <Grid item xs={12}>
-                <h2>Here you can activate or deactivate your profile</h2>
+                <h2>Here you can go online or offline</h2>
             </Grid>
             <Grid item xs={12}>
                 <ProfileStatus/>

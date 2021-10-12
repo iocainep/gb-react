@@ -1,44 +1,55 @@
-import React, {useRef} from "react";
-import PropTypes from 'prop-types';
-import {TextField, Fab, Grid} from '@material-ui/core';
-import SendIcon from '@material-ui/icons/Send';
+import React from 'react'
+import TextField from '@material-ui/core/TextField'
+import SendIcon from '@material-ui/icons/Send'
+import IconButton from '@material-ui/core/IconButton'
+import * as styles from './index.module.css';
 
-export const InputForm = ({updateData}) => {
+export const InputForm = (props) => {
+    const {
+        label = 'Сообщение',
+        placeholder = 'Введите сообщение',
+        onSubmit,
+    } = props
+    const inputRef = React.useRef(null)
 
-    // let message = useRef();
-    //
-    // let handleMessage = (event) => {
-    //     event.preventDefault();
-    //     updateData(message.current.value);
-    //     message.current.value = '';
-    // }
-    //
-    // let handleKeyPress = (event) => {
-    //     if (event.charCode === 13) {
-    //         handleMessage(event);
-    //     }
-    // };
+    const [inputValue, setInputValue] = React.useState('')
+
+    const handleChange = (e) => {
+        setInputValue(e.target.value)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (onSubmit) {
+            onSubmit(inputValue)
+            setInputValue('')
+            setTimeout(() => inputRef.current?.focus(), 200)
+        }
+    }
 
     return (
-        <Grid container spacing={3}>
-            <Grid item xs={11}>
-                <TextField
-                    label="Type Your Message"
-                    fullWidth
-                    autoFocus/>
-            </Grid>
-            <Grid
-                item xs={1}
-                align="right">
-                <Fab color="primary"
-                     aria-label="add">
-                    <SendIcon/>
-                </Fab>
-            </Grid>
-        </Grid>
-    );
-};
-
-InputForm.propTypes = {
-    updateData: PropTypes.string
-};
+        <form className={styles.form} onSubmit={handleSubmit}>
+            <TextField
+                fullWidth
+                required
+                autoFocus
+                innerRef={inputRef}
+                className="child__text-field bordered"
+                variant="outlined"
+                label={label}
+                placeholder={placeholder}
+                value={inputValue}
+                onChange={handleChange}
+            />
+            <IconButton
+                type="submit"
+                variant="contained"
+                tabIndex={-1}
+                title="Отправить"
+            >
+                <SendIcon />
+            </IconButton>
+        </form>
+    )
+}
