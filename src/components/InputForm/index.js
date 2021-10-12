@@ -9,19 +9,19 @@ export const InputForm = ({updateData}) => {
         updateData: PropTypes.string
     };
 
-    let message = useRef();
-
-    let handleMessage = (event) => {
-        event.preventDefault();
-        updateData(message.current.value);
-        message.current.value = '';
-    }
-
-    let handleKeyPress = (event) => {
-        if (event.charCode === 13) {
-            handleMessage(event);
-        }
-    };
+    // let message = useRef();
+    //
+    // let handleMessage = (event) => {
+    //     event.preventDefault();
+    //     updateData(message.current.value);
+    //     message.current.value = '';
+    // }
+    //
+    // let handleKeyPress = (event) => {
+    //     if (event.charCode === 13) {
+    //         handleMessage(event);
+    //     }
+    // };
 
     return (
         <Grid container spacing={3}>
@@ -29,16 +29,13 @@ export const InputForm = ({updateData}) => {
                 <TextField
                     label="Type Your Message"
                     fullWidth
-                    autoFocus
-                    inputRef={message}
-                    onKeyPress={handleKeyPress}/>
+                    autoFocus/>
             </Grid>
             <Grid
                 item xs={1}
                 align="right">
                 <Fab color="primary"
-                     aria-label="add"
-                     onClick={handleMessage}>
+                     aria-label="add">
                     <SendIcon/>
                 </Fab>
             </Grid>

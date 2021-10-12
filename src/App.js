@@ -1,12 +1,15 @@
 import * as styles from './App.module.css';
 import React from 'react';
-import {ChatOpened} from './pages/ChatOpened/ChatOpened';
+import {BrowserRouter} from "react-router-dom";
+import {Routes} from "./routes";
 
 function App() {
 
     return (
         <div className={styles.App}>
-            <ChatOpened/>
+            <BrowserRouter>
+                <Routes/>
+            </BrowserRouter>
         </div>
     );
 }
