@@ -24,8 +24,6 @@ export const CurrentChat = (props) => {
 
     const {chatId} = useParams();
 
-    console.log(CHATS);
-
     if (chatId > CONTACTS.length) {
         return <Redirect to="/404" />
     }
