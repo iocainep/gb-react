@@ -1,24 +1,23 @@
 import React from 'react'
 import {Button} from '@material-ui/core'
 import {useDispatch, useSelector} from 'react-redux'
-import {fetchNews, fetchNewsByAxios, NEWS_REQUEST_STATUS, setNewsList} from '../../store/news'
+import {fetchNews, NEWS_REQUEST_STATUS, setNewsList} from '../../store/news'
 
 export const NewsList = (props) => {
     const {status, list} = useSelector((state) => state.news)
     const dispatch = useDispatch()
 
     const loadData = () => dispatch(fetchNews())
-    const loadDataByAxios = () => dispatch(fetchNewsByAxios())
     const clearData = () => dispatch(setNewsList([]))
 
     React.useEffect(() => {
-        loadDataByAxios()
+        loadData()
     }, [])
 
     if (status === NEWS_REQUEST_STATUS.LOADING) {
         return <p>Загрузка новостей, подождите</p>
     }
-console.log(list)
+
     return (
         <div>
             {status !== NEWS_REQUEST_STATUS.ERROR ? (

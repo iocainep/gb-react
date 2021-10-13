@@ -1,4 +1,3 @@
-import {transport} from '../../services/transport'
 import {API_URL} from '../../components/mock'
 
 export const SET_NEWS_LIST = 'NEWS::SET_NEWS_LIST'
@@ -40,22 +39,5 @@ export const fetchNews = () => {
 
                 dispatch(setErrorStatus())
             })
-    }
-}
-
-export const fetchNewsByAxios = () => {
-    return async (dispatch, getState) => {
-        dispatch(setLoadingStatus())
-
-        try {
-            const { data } = await transport.get(API_URL)
-
-            dispatch(setIdleStatus())
-            dispatch(setNewsList(data))
-        } catch (error) {
-            console.error('error', error)
-
-            dispatch(setErrorStatus())
-        }
     }
 }
