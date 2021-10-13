@@ -7,7 +7,7 @@ import { changeIsOnlineWithThunk } from '../../store/profile';
 export const ProfileStatus = (props) => {
     const dispatch = useDispatch()
     const { age, name, isOnline } = useSelector((state) => state.profile)
-
+    console.log(age);
     const handleIsOnlineChange = (event) => {
         dispatch(changeIsOnlineWithThunk(event.target.checked))
     }

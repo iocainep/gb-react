@@ -3,6 +3,7 @@ import {Route, Switch} from "react-router-dom";
 import {ChatOpened} from "../pages/ChatOpened";
 import {Profile} from "../pages/Profile";
 import {Main} from "../pages/Main";
+import {News} from "../pages/News";
 import {NotFound} from "../pages/NotFound";
 
 export const Routes = () => {
@@ -28,6 +29,11 @@ export const Routes = () => {
                 render={() => {
                     return <ChatOpened />
                 }}/>
+            <Route
+                exact
+                path="/news"
+                component={News}
+            />
             <Route
                 path="*"
                 component={NotFound}
