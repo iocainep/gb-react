@@ -1,9 +1,13 @@
-import { CHANGE_IS_ONLINE } from '../profile/actions'
+import {
+    CHANGE_IS_AUTHED,
+    CHANGE_IS_ONLINE,
+} from './actions'
 
 const initialState = {
     name: 'John',
     age: 27,
     isOnline: true,
+    isAuthed: false,
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -12,6 +16,12 @@ export const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isOnline: action.payload.isOnline,
+            }
+        }
+        case CHANGE_IS_AUTHED: {
+            return {
+                ...state,
+                isAuthed: action.payload.isAuthed,
             }
         }
         default:

@@ -7,8 +7,28 @@ import ChatIcon from '@material-ui/icons/Chat';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import FeedIcon from '@mui/icons-material/Feed';
 import {NavLink} from 'react-router-dom';
+import {auth} from '../../services/firebase';
+import { useDispatch } from 'react-redux'
+import { changeIsAuthed } from '../../store/profile';
 
 export const MenuBar = () => {
+
+    const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            console.log('onAuthStateChanged', { user })
+
+            dispatch(changeIsAuthed(Boolean(user)))
+        })
+    }, [])
+
+    const handleSignOut = (e) => {
+        e.preventDefault()
+
+        auth.signOut()
+    }
+
     return (
         <Box sx={{flexGrow: 1}}>
             <AppBar position="static">
@@ -60,6 +80,17 @@ export const MenuBar = () => {
                                     className={styles.MuiSvgIcon}
                                     />
                             </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                exact
+                                to="/login">Login
+                            </NavLink>
+                        </li>
+                        <li>
+                            <a href="/" onClick={handleSignOut}>
+                                Sign out
+                            </a>
                         </li>
                     </ul>
             </AppBar>
