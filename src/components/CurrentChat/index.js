@@ -6,13 +6,17 @@ import { AUTHORS } from '../mock'
 import { useDispatch, useSelector } from 'react-redux'
 import { useIsChatExists } from '../../hooks/useIsChatExists'
 import { getMessageList } from '../../store/messages';
-import { sendMessageToBot } from '../../store/messages';
+import { sendMessageToBot, subscribeOnMessageChange} from '../../store/messages';
 
 export const CurrentChat = () => {
     const { chatId } = useParams()
 
     const messageList = useSelector(getMessageList(chatId))
     const dispatch = useDispatch()
+
+    React.useEffect(() => {
+        dispatch(subscribeOnMessageChange(chatId))
+    }, [])
 
     const handleMessageSubmit = (newMessageText) => {
         dispatch(
