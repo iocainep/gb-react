@@ -4,9 +4,9 @@ import Message from '../Message'
 import { InputForm } from '../InputForm'
 import { AUTHORS } from '../mock'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMessage } from '../../store/messages/actions'
 import { useIsChatExists } from '../../hooks/useIsChatExists'
 import { getMessageList } from '../../store/messages';
+import { sendMessageToBot } from '../../store/messages';
 
 export const CurrentChat = () => {
     const { chatId } = useParams()
@@ -16,7 +16,7 @@ export const CurrentChat = () => {
 
     const handleMessageSubmit = (newMessageText) => {
         dispatch(
-            addMessage(chatId, {
+            sendMessageToBot(chatId, {
                 id: `message${Date.now()}`,
                 author: AUTHORS.ME,
                 text: newMessageText,
