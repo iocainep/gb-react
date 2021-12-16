@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import HomeIcon from '@material-ui/icons/Home';
 import ChatIcon from '@material-ui/icons/Chat';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import FeedIcon from '@mui/icons-material/Feed';
 import {NavLink} from 'react-router-dom';
 
 export const MenuBar = () => {
@@ -46,6 +47,18 @@ export const MenuBar = () => {
                                 <ChatIcon
                                     className={styles.MuiSvgIcon}
                                 />
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink
+                                style={{
+                                    textDecoration: 'none',
+                                }}
+                                exact
+                                to="/news">
+                                <FeedIcon
+                                    className={styles.MuiSvgIcon}
+                                    />
                             </NavLink>
                         </li>
                     </ul>

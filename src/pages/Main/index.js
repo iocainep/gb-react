@@ -8,9 +8,9 @@ export const Main = () => {
         <Grid container spacing={3}>
             <MenuBar/>
             <Grid item xs={12}>
+                <h2>Главная страница. Для навигации воспользуйтесь меню</h2>
             </Grid>
             <Grid item xs={12}>
-                This is main page
             </Grid>
         </Grid>
 
